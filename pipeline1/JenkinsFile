@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+        
+    stages { 
+        stage('Git Checkout') {
+            steps {
+                checkout scm: scmGit(
+                    branches: [[name: "main"]], 
+                    extensions: [], 
+                    userRemoteConfigs: [
+                        [url: 'https://github.com/chenYL123djdj/MR.git']
+                    ]
+                )
+            }
+        }
+       
+        stage('Babel') {
+            steps {
+                powershell """
+                    tree
+                """
+            }
+        }
+    }
+}
